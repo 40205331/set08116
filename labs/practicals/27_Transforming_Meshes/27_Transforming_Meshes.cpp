@@ -51,35 +51,33 @@ bool update(float delta_time) {
   }
   // *********************************
   if (glfwGetKey(renderer::get_window(), 'S')) {
-	  m.get_transform().position -= vec3(0.0f, 0.0f, -5.0f) * delta_time;
+	  m.get_transform().position += vec3(0.0f, 0.0f, 5.0f) * delta_time;
   }
   if (glfwGetKey(renderer::get_window(), 'A')) {
-	  m.get_transform().position -= vec3(-5.0f, 0.0f, 0.0f) * delta_time;
-  }
-  if (glfwGetKey(renderer::get_window(), 'D')) {
 	  m.get_transform().position -= vec3(5.0f, 0.0f, 0.0f) * delta_time;
   }
-
-
-
-
-
-
-
-
+  if (glfwGetKey(renderer::get_window(), 'D')) {
+	  m.get_transform().position += vec3(5.0f, 0.0f, 0.0f) * delta_time;
+  }
+  if (glfwGetKey(renderer::get_window(), 'O')) {
+	  m.get_transform().scale -= vec3(5.0f, 5.0f, 5.0f) * delta_time;
+  }
+  if (glfwGetKey(renderer::get_window(), 'P')) {
+	  m.get_transform().scale += vec3(5.0f, 5.0f, 5.0f) * delta_time;
+  }
   // *********************************
   if (glfwGetKey(renderer::get_window(), GLFW_KEY_UP)) {
     m.get_transform().rotate(vec3(-pi<float>() * delta_time, 0.0f, 0.0f));
   }
   // *********************************
   if (glfwGetKey(renderer::get_window(), GLFW_KEY_DOWN)) {
-	  m.get_transform().rotate(vec3(-pi<float>() * delta_time, 0.0f, 0.0f));
+	  m.get_transform().rotate(vec3(pi<float>() * delta_time, 0.0f, 0.0f));
   }
   if (glfwGetKey(renderer::get_window(), GLFW_KEY_LEFT)) {
 	  m.get_transform().rotate(vec3(-pi<float>() * delta_time, 0.0f, 0.0f));
   }
   if (glfwGetKey(renderer::get_window(), GLFW_KEY_RIGHT)) {
-	  m.get_transform().rotate(vec3(-pi<float>() * delta_time, 0.0f, 0.0f));
+	  m.get_transform().rotate(vec3(0.0f, 0.0f, pi<float>() * delta_time));
   }
   // *********************************
   // Update the camera
@@ -93,7 +91,7 @@ bool render() {
   mat4 M;
   // *********************************
   // Get the model transform from the mesh
-  auto M = m.get_transform().get_transform_matrix();
+  M = m.get_transform().get_transform_matrix();
   // *********************************
   // Create MVP matrix
   auto V = cam.get_view();
