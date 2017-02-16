@@ -19,7 +19,7 @@ bool load_content() {
   vector<vec3> positions{vec3(0.0f, 1.0f, 0.0f), vec3(-1.0f, -1.0f, 0.0f), vec3(1.0f, -1.0f, 0.0f)};
   // *********************************
   // Define texture coordinates for triangle
-  vector<vec2> tex_coords{ vec2(0.0f, 0.0f), vec2(1.0f, 0.0f), vec2(0.0f, 1.0f), vec2(1.0f, 1.0f)};
+  vector<vec2> tex_coords{ vec2(0.5f, 0.0f), vec2(0.0f, 1.0f), vec2(1.0f, 1.0f)};
   // *********************************
   // Add to the geometry
   geom.add_buffer(positions, BUFFER_INDEXES::POSITION_BUFFER);
@@ -34,7 +34,7 @@ bool load_content() {
   // Load in texture shaders here
   eff.add_shader("31_Texturing_Shader/simple_texture.vert", GL_VERTEX_SHADER);
   eff.add_shader("31_Texturing_Shader/simple_texture.frag", GL_FRAGMENT_SHADER);
-  // *********************************
+  // ********************************* 
   // Build effect
   eff.build();
   // Load texture "textures/sign.jpg"
@@ -70,7 +70,7 @@ bool render() {
                      GL_FALSE,                        // Transpose the matrix?
                      value_ptr(MVP));                 // Pointer to matrix data
 
-  // *********************************
+  // *********************************  
   // Bind texture to renderer
   renderer::bind(tex, 0);
   // Set the texture value for the shader here
